@@ -5,6 +5,8 @@
     padding: 20px;
 }
 
+
+
 .box{
     transform: translateX(-50%);
     opacity: 0;
@@ -14,3 +16,68 @@
    transform: translateX(0) !important;
    opacity: 1;
   }
+.homebg{
+
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(6, 177, 245, 0.4) ), url(../public/images/mhhome2.jpeg);
+    background-position: center center;
+    background-size: cover;
+    height: 80vh;
+    width: 100vw;
+}
+.gallery{
+
+    width: 240px;
+    height: 400px;
+}
+.galleryslides{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ccc;
+}
+
+/* 
+.galleryslides:nth-child(1n) {
+    background-color: rgb(206, 17, 17);
+  }
+  
+  .galleryslides:nth-child(2n) {
+    background-color: rgb(0, 140, 255);
+  }
+  
+  .galleryslides:nth-child(3n) {
+    background-color: rgb(10, 184, 111);
+  }
+  
+  .galleryslides:nth-child(4n) {
+    background-color: rgb(211, 122, 7);
+  }
+  
+  .galleryslides:nth-child(5n) {
+    background-color: rgb(118, 163, 12);
+  }
+  
+  .galleryslides:nth-child(6n) {
+    background-color: rgb(180, 10, 47);
+  }
+  
+  .galleryslides:nth-child(7n) {
+    background-color: rgb(35, 99, 19);
+  }
+  
+  .galleryslides:nth-child(8n) {
+    background-color: rgb(0, 68, 255);
+  }
+  
+  .galleryslides:nth-child(9n) {
+    background-color: rgb(218, 12, 218);
+  }
+  
+  .galleryslides:nth-child(10n) {
+    background-color: rgb(54, 94, 77);
+  }
+   */

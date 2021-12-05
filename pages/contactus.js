@@ -67,8 +67,8 @@ const map = {
                                 yesIWantToUseGoogleMapApiInternals
                             >
                                 <AnyReactComponent
-                                    lat={26.65839744351542}
-                                    lng={ 87.55948481477986}
+                                    lat={26.65}
+                                    lng={ 87.55}
                                     text="My Marker"
                                 />
                             </GoogleMapReact>

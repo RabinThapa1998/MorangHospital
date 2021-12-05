@@ -3,7 +3,7 @@ import styles from '../styles/Home.module.css'
 import Image from 'next/image'
 import { AppBar, Typography, Box, CssBaseline, Grid, Paper, Item, Card, CardContent, Divider, Avatar, Stack } from "@mui/material";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay, EffectFade, EffectCards } from 'swiper';
 import { styled, alpha } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 import { useRef, useState, useEffect } from 'react';
@@ -40,99 +40,165 @@ export default function Home() {
   const [isLoaded, setIsLoaded] = useState(true)
   const healthContainerRef = useRef(null)
   const options = {
-    threshold:1
+    threshold: 1
   }
-  console.log("outside isloaded",isLoaded)
+  console.log("outside isloaded", isLoaded)
 
   useEffect(() => {
-    if(isLoaded)
-    {
-     setIsLoaded(false);
-     console.log('inside isloaded', isLoaded)
+    if (isLoaded) {
+      setIsLoaded(false);
+      console.log('inside isloaded', isLoaded)
       const boxobserver = new IntersectionObserver(
-      function(entries,boxobserver){
-        entries.forEach(entry=>{
-          if (entry.isIntersecting){
-            // console.log(entry.isIntersecting)
-            setIsVisible(true);
-            boxobserver.unobserve(entry.target);
-          }
-          else{
-            setIsVisible(false)
-          }
-        })
-      }, options)
-      if(healthContainerRef.current) 
-     { boxobserver.observe(healthContainerRef.current)}
+        function (entries, boxobserver) {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              // console.log(entry.isIntersecting)
+              setIsVisible(true);
+              boxobserver.unobserve(entry.target);
+            }
+            else {
+              setIsVisible(false)
+            }
+          })
+        }, options)
+      if (healthContainerRef.current) { boxobserver.observe(healthContainerRef.current) }
     }
     return () => {
-    
-      if(healthContainerRef.current)
-      boxobserver.unobserve(healthContainerRef.current)
+
+      // if(healthContainerRef.current)
+      // boxobserver.unobserve(healthContainerRef.current)
     }
-  }, [healthContainerRef ]) 
+  }, [healthContainerRef])
 
-  
+
   return (
-    <Box sx={{ margin: '0px', p:3 }} >
-      <Grid container xs={12} sx={{ alignItems: 'stretch' }}>
-        <Grid item sm={5} xs={12} >
-          <Paper elevation={0} sx={{ p:0, height: 'auto' }}>
-            <Typography variant='h5' sx={{ fontWeight: '600', textAlign: 'start' }} color='text.secondary'>Welcome To</Typography>
-            <Typography variant='h2' sx={{ fontWeight: '900', textAlign: 'start', fontSize: '60px' }} color='primary'>Morang <ins style={{ fontWeight: '900', textAlign: 'start', fontSize: '65px' }}>  Hospital</ins></Typography>
-          </Paper>
-          <Paper elevation={1} sx={{ mt: 5, height: 'auto' }}>
-            <Swiper
-              modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+    <Box sx={{ margin: '0px', p: 0, overflowX: 'hidden' }}>
+      <Box className={styles.homebg} sx={{ px: 3, pt: 2 }}>
 
-              // navigation
-              pagination={{ clickable: true }}
+        <Paper elevation={0} sx={{ p: 0, height: 'auto', background: 'transparent' }}>
+          <Typography variant='h3' sx={{ fontWeight: '600', textAlign: 'center' }} color='text.secondary'>Welcome To</Typography>
+          <Typography variant='h2' sx={{ fontWeight: '900', fontSize: '80px', textAlign: 'center', textDecoration: 'underline' }} color='text.primary'>Morang Hospital</Typography>
+          <Typography variant='h5' sx={{ fontWeight: '900', textAlign: 'center', textDecoration: 'underline' }} color='text.primary'>Since 2007</Typography>
+        </Paper>
+
+        <Paper elevation={0} sx={{ mt: 13, height: 'auto', background: 'transparent' }}>
+          <Swiper
+            modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay, EffectFade]}
+            // navigation
+            pagination={{ clickable: true }}
             // scrollbar={{ draggable: true }}
-            // spaceBetween={10}
+            spaceBetween={30}
             // slidesPerView={1}
-            autoplay={{delay: 1000}}
-            loop= 'true'  
-          
-            // direction={'vertical'}
-            >
-              <SwiperSlide>
-                <Box sx={{ height: '300px', p:5 }}>
-                  <Typography variant="h5" color='text.secondary'>Daily OPD Service</Typography>
-                  <Typography variant="h4">By:</Typography>
-                  <Stack direction='row' spacing={2} sx={{ mt: 2 }}>
-                    <Avatar
-                      alt="Rajiv Rizal"
-                      // src="/images/umesh.jpg"
-                      sx={{ width: 72, height: 72 }}
-                    />
-                    <Box>
-                      <Typography variant="h3" sx={{ fontWeight: '700' }}>Dr.Rajiv Rizal</Typography>
-                      <Typography variant='body1' sx={{ textAlign: 'left', color: 'text.secondary' }}>MBBS.MD</Typography>
-                    </Box>
-                  </Stack>
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            loop='true'
+            effect={'fade'}
+            fadeEffect={
+              { crossFade: true }
+            }
+          >
+            <SwiperSlide>
+              <Box sx={{ height: 'auto', p: 0 }}>
+                <Typography variant="h5" color='text.secondary'>Daily Physician Service</Typography>
+                <Typography variant="h4">By:</Typography>
+                <Stack direction='row' spacing={2} sx={{ mt: 2 }}>
+                  <Avatar
+                    alt="Umesh Guragain"
+                    // src="/images/umesh.jpg"
+                    sx={{ width: 72, height: 72 }}
+                  />
+                  <Box>
+                    <Typography variant="h3" sx={{ fontWeight: '700', color: 'common.white' }} >Dr.Umesh Guragain</Typography>
+                    <Typography variant='body1' sx={{ textAlign: 'left', color: 'common.white' }}>MBBS.MD</Typography>
+                    <Typography variant='body1' sx={{ textAlign: 'left', color: 'common.white' }}>Senior Physician and MD in Internal Medicine</Typography>
+                  </Box>
+                </Stack>
 
-                </Box>
-              </SwiperSlide>
-              <SwiperSlide>
-                <Box sx={{ height: '300px', p: 5 }}>
-                  <Typography variant="h5" color='text.secondary'>Daily Pediatric Service</Typography>
-                  <Typography variant="h4">By:</Typography>
-                  <Typography variant="h3">Dr.Sanjiv</Typography>
-                </Box>
-              </SwiperSlide>
-              <SwiperSlide>
-                <Box sx={{ height: '300px', p: 5 }}>
-                  <Typography variant="h5" color='text.secondary'>Daily Bone Service</Typography>
-                  <Typography variant="h4">By:</Typography>
-                  <Typography variant="h3">Dr.Ravi</Typography>
-                </Box>
-              </SwiperSlide>
+              </Box>
+            </SwiperSlide>
+            <SwiperSlide>
+              <Box sx={{ height: 'auto', p: 0 }}>
+                <Typography variant="h5" color='text.secondary'>Daily Orthopedic service</Typography>
+                <Typography variant="h4">By:</Typography>
+                <Stack direction='row' spacing={2} sx={{ mt: 2 }}>
+                  <Avatar
+                    alt="Ravi kumar Shah"
+                    // src="/images/umesh.jpg"
+                    sx={{ width: 72, height: 72 }}
+                  />
+                  <Box>
+                    <Typography variant="h3" sx={{ fontWeight: '700', color: 'common.white' }} >Dr.Ravi Kumar Shah</Typography>
+                    <Typography variant='body1' sx={{ textAlign: 'left', color: 'common.white' }}>MBBS.MS</Typography>
+                    <Typography variant='body1' sx={{ textAlign: 'left', color: 'common.white' }}>Orthopedic and Trauma Surgeon</Typography>
+                  </Box>
+                </Stack>
 
-            </Swiper>
-          </Paper>
-        </Grid>
-        <Grid item sm={7} xs={12}>
-          <Paper elevation={1} sx={{ height: 'auto', mx: 3 }} className={classes.heroswiperpaper}>
+              </Box>
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <Box sx={{ height: 'auto', p: 0 }}>
+                <Typography variant="h5" color='text.secondary'>Daily Pediatric Service</Typography>
+                <Typography variant="h4">By:</Typography>
+                <Stack direction='row' spacing={2} sx={{ mt: 2 }}>
+                  <Avatar
+                    alt="Sunil Adhikari"
+                    // src="/images/umesh.jpg"
+                    sx={{ width: 72, height: 72 }}
+                  />
+                  <Box>
+                    <Typography variant="h3" sx={{ fontWeight: '700', color: 'common.white' }} >Dr.Sunil Adhikari</Typography>
+                    <Typography variant='body1' sx={{ textAlign: 'left', color: 'common.white' }}>MBBS.MD</Typography>
+                    <Typography variant='body1' sx={{ textAlign: 'left', color: 'common.white' }}>Pediatrician</Typography>
+                  </Box>
+                </Stack>
+
+              </Box>
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <Box sx={{ height: 'auto', p: 0 }}>
+                <Typography variant="h5" color='text.secondary'>Daily Gynae and OBS Service</Typography>
+                <Typography variant="h4">By:</Typography>
+                <Stack direction='row' spacing={2} sx={{ mt: 2 }}>
+                  <Avatar
+                    alt="Mamata Pandey"
+                    // src="/images/umesh.jpg"
+                    sx={{ width: 72, height: 72 }}
+                  />
+                  <Box>
+                    <Typography variant="h3" sx={{ fontWeight: '700', color: 'common.white' }} >Dr.Mamata Pandey</Typography>
+                    <Typography variant='body1' sx={{ textAlign: 'left', color: 'common.white' }}>MBBS.MD</Typography>
+                    <Typography variant='body1' sx={{ textAlign: 'left', color: 'common.white' }}>Gynae and OBS</Typography>
+                  </Box>
+                </Stack>
+
+              </Box>
+            </SwiperSlide>
+            <SwiperSlide>
+              <Box sx={{ height: 'auto', p: 0 }}>
+                <Typography variant="h5" color='text.secondary'>Daily USG Service</Typography>
+                <Typography variant="h4">By:</Typography>
+                <Stack direction='row' spacing={2} sx={{ mt: 2 }}>
+                  <Avatar
+                    alt="Rajiv Rizal"
+                    // src="/images/umesh.jpg"
+                    sx={{ width: 72, height: 72 }}
+                  />
+                  <Box>
+                    <Typography variant="h3" sx={{ fontWeight: '700', color: 'common.white' }} >Dr.Rajiv Rizal</Typography>
+                    <Typography variant='body1' sx={{ textAlign: 'left', color: 'common.white' }}>MBBS.MD</Typography>
+                    <Typography variant='body1' sx={{ textAlign: 'left', color: 'common.white' }}>Radiologist</Typography>
+                  </Box>
+                </Stack>
+
+              </Box>
+            </SwiperSlide>
+
+          </Swiper>
+        </Paper>
+
+        {/* <Grid item sm={7} xs={12}> */}
+        {/* <Paper elevation={1} sx={{ height: 'auto', mx: 3 }} className={classes.heroswiperpaper}>
 
             <Swiper
               modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -163,89 +229,92 @@ export default function Home() {
               </SwiperSlide>
 
             </Swiper>
-          </Paper>
-        </Grid>
-      </Grid>
+          </Paper> */}
+        {/* </Grid> */}
+
+      </Box>
 
       <div ref={healthContainerRef} className={isVisible ? 'appear' : 'box'}>
-      <Box sx={{ flexGrow: '1', mt: 1 }} >
-        <Typography variant="h4" sx={{ fontWeight: '700', color: 'text.secondary' }}>Our Health Specialist</Typography>
-        <Swiper
-          // install Swiper modules
-          modules={[Navigation, Pagination, Scrollbar, A11y]}
-          spaceBetween={50}
-          slidesPerView={4}
-          // navigation
-          // pagination={{ clickable: true }}
-          // scrollbar={{ draggable: true }}
-          onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log('slide change')}
-          className={styles.departmentswiper}
-        >
+        <Box sx={{ flexGrow: '1', mt: 1 }} >
+          <Typography variant="h4" sx={{ fontWeight: '700', color: 'text.secondary' }}>Our Health Specialist</Typography>
+          <Swiper
+            // install Swiper modules
+            modules={[Navigation, Pagination, Scrollbar, A11y]}
+            spaceBetween={50}
+            slidesPerView={4}
+            // navigation
+            // pagination={{ clickable: true }}
+            // scrollbar={{ draggable: true }}
+            onSwiper={(swiper) => console.log(swiper)}
+            onSlideChange={() => console.log('slide change')}
+            className={styles.departmentswiper}
+          >
 
-          <SwiperSlide>
-            <Paper elevation={2} className={classes.departmentcard} sx={{ p: 2 }}>
-              <Avatar
-                alt="Umesh Guragain"
-                src="/images/umesh.jpg"
-                sx={{ width: 72, height: 72, margin: 'auto' }}
-                variant="rounded"
-              />
-              <Typography variant='h6' sx={{ textAlign: 'center', fontWeight: '500', color: 'text.secondary', pt: 2 }} >Emergency</Typography>
-              <Typography variant='h5' sx={{ textAlign: 'center' }}>Dr.Umesh Guragain</Typography>
-              <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.secondary' }}>MBBS.MD</Typography>
-            </Paper>
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <Paper elevation={2} className={classes.departmentcard} sx={{ p: 2 }}>
-              <Avatar
-                alt="Umesh Guragain"
-                src="/images/umesh.jpg"
-                sx={{ width: 64, height: 64, margin: 'auto' }}
-              />
-              <Typography variant='h6' sx={{ textAlign: 'center', fontWeight: '500', color: 'text.secondary', pt: 3 }} >Emergency</Typography>
-              <Typography variant='h5' sx={{ textAlign: 'center' }}>Dr.Umesh Guragain</Typography>
-              <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.secondary' }}>MBBS.MD</Typography>
-            </Paper>
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <Paper elevation={2} className={classes.departmentcard} sx={{ p: 2 }}>
-              <Avatar
-                alt="Umesh Guragain"
-                src="/images/umesh.jpg"
-                sx={{ width: 64, height: 64, margin: 'auto' }}
-              />
-              <Typography variant='h6' sx={{ textAlign: 'center', fontWeight: '500', color: 'text.secondary', pt: 3 }} >Emergency</Typography>
-              <Typography variant='h5' sx={{ textAlign: 'center' }}>Dr.Umesh Guragain</Typography>
-              <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.secondary' }}>MBBS.MD</Typography>
-            </Paper>
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <Paper elevation={2} className={classes.departmentcard} sx={{ p: 2 }}>
-              <Avatar
-                alt="Umesh Guragain"
-                src="/images/umesh.jpg"
-                sx={{ width: 64, height: 64, margin: 'auto' }}
-              />
-              <Typography variant='h6' sx={{ textAlign: 'center', fontWeight: '500', color: 'text.secondary', pt: 3 }} >Emergency</Typography>
-              <Typography variant='h5' sx={{ textAlign: 'center' }}>Dr.Umesh Guragain</Typography>
-              <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.secondary' }}>MBBS.MD</Typography>
-            </Paper>
-          </SwiperSlide>
-
-
-        </Swiper>
-      </Box>
+            <SwiperSlide>
+              <Paper elevation={0} className={classes.departmentcard} sx={{ p: 2 }}>
+                <Avatar
+                  alt="Umesh Guragain"
+                  src="/images/umesh.jpg"
+                  sx={{ width: 72, height: 72, margin: 'auto' }}
+                  variant="rounded"
+                />
+                <Typography variant='h6' sx={{ textAlign: 'center', fontWeight: '500', color: 'text.secondary', pt: 2 }} >Emergency</Typography>
+                <Typography variant='h5' sx={{ textAlign: 'center' }}>Dr.Umesh Guragain</Typography>
+                <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.secondary' }}>MBBS.MD</Typography>
+                <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.disabled' }}>Senior Physician</Typography>
+              </Paper>
+            </SwiperSlide>
+            <SwiperSlide>
+              <Paper elevation={0} className={classes.departmentcard} sx={{ p: 2 }}>
+                <Avatar
+                  alt="DB Thapa"
+                  src="/images/dbthapa.jpg"
+                  sx={{ width: 72, height: 72, margin: 'auto' }}
+                  variant="rounded"
+                />
+                <Typography variant='h6' sx={{ textAlign: 'center', fontWeight: '500', color: 'text.secondary', pt: 2 }} >OPD</Typography>
+                <Typography variant='h5' sx={{ textAlign: 'center' }}>DB thapa</Typography>
+                <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.secondary' }}>General Medicine</Typography>
+                <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.disabled' }}>Health Assistant</Typography>
+              </Paper>
+            </SwiperSlide>
+            <SwiperSlide>
+              <Paper elevation={0} className={classes.departmentcard} sx={{ p: 2 }}>
+                <Avatar
+                  alt="DB Thapa"
+                  src="/images/dkesh.jpg"
+                  sx={{ width: 72, height: 72, margin: 'auto' }}
+                  variant="rounded"
+                />
+                <Typography variant='h6' sx={{ textAlign: 'center', fontWeight: '500', color: 'text.secondary', pt: 2 }} >OPD</Typography>
+                <Typography variant='h5' sx={{ textAlign: 'center' }}>Dikesh Dhungana</Typography>
+                <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.secondary' }}>General Medicine</Typography>
+                <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.disabled' }}>Health Assistant</Typography>
+              </Paper>
+            </SwiperSlide>
+            <SwiperSlide>
+              <Paper elevation={0} className={classes.departmentcard} sx={{ p: 2 }}>
+                <Avatar
+                  alt="DB Thapa"
+                  src="/images/ganesh.jpg"
+                  sx={{ width: 72, height: 72, margin: 'auto' }}
+                  variant="rounded"
+                />
+                <Typography variant='h6' sx={{ textAlign: 'center', fontWeight: '500', color: 'text.secondary', pt: 2 }} >OPD</Typography>
+                <Typography variant='h5' sx={{ textAlign: 'center' }}>Ganesh Neupane</Typography>
+                <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.secondary' }}>General Medicine</Typography>
+                <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.disabled' }}>Health Assistant</Typography>
+              </Paper>
+            </SwiperSlide>
+          </Swiper>
+        </Box>
       </div>
 
 
       <Box sx={{ flexGrow: '1', mt: 5 }}>
         <Typography variant="h4" sx={{ fontWeight: '700', color: 'text.secondary' }}>Our Services</Typography>
         <Stack className={styles.departmentswiper} spacing={2}>
-          <Paper elevation={0} sx={{ p: 2}}>
+          <Paper elevation={0} sx={{ p: 2 }}>
             <Typography variant='h6' sx={{ textAlign: 'center', fontWeight: '500', color: 'text.secondary', pt: 2 }} >Highly Equipped Lab</Typography>
             <Typography variant='h5' sx={{ textAlign: 'center' }}>We test all the basic body</Typography>
             <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.secondary' }}>Blood Sugar</Typography>
@@ -253,15 +322,63 @@ export default function Home() {
           </Paper>
           <Paper elevation={0} sx={{ p: 2 }}>
             <Typography variant='h6' sx={{ textAlign: 'center', fontWeight: '500', color: 'text.secondary', pt: 2 }} >Highly Equipped Lab</Typography>
-            <Typography variant='h5' sx={{ textAlign: 'center' }}>Dr.Umesh Guragain</Typography>
-            <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.secondary' }}>MBBS.MD</Typography>
+            <Typography variant='h5' sx={{ textAlign: 'center' }}>We test all the basic body</Typography>
+            <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.secondary' }}>Blood Sugar</Typography>
+            <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.secondary' }}>Dengue..</Typography>
           </Paper>
           <Paper elevation={0} sx={{ p: 2 }}>
             <Typography variant='h6' sx={{ textAlign: 'center', fontWeight: '500', color: 'text.secondary', pt: 2 }} >Highly Equipped Lab</Typography>
-            <Typography variant='h5' sx={{ textAlign: 'center' }}>Dr.Umesh Guragain</Typography>
-            <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.secondary' }}>MBBS.MD</Typography>
+            <Typography variant='h5' sx={{ textAlign: 'center' }}>We test all the basic body</Typography>
+            <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.secondary' }}>Blood Sugar</Typography>
+            <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.secondary' }}>Dengue..</Typography>
           </Paper>
         </Stack>
+      </Box>
+
+      <Box sx={{ flexGrow: '1', mt: 5 }}>
+        <Typography variant="h4" sx={{ fontWeight: '700', color: 'text.secondary' }}>Gallery</Typography>
+        <Grid container sx={{p:2}}>
+          <Grid item xs={12} sm={6}>
+            <Typography variant='h2' color='text.secondary'>We Share Our Joy.</Typography>
+            <Typography variant='body2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, vitae similique! Quaerat, optio? Exercitationem consequatur aut odit nulla. Fugiat iste iure veniam doloribus distinctio vero cumque ullam. Corporis, earum ipsum.</Typography>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Box sx={{ overflowY: 'hidden' }}>
+              <Swiper
+                modules={[EffectCards]}
+                effect='cards'
+                grabCursor={true}
+                className={styles.gallery}
+              >
+                <SwiperSlide className={styles.galleryslides}>
+                  <Image src='/images/G1.jpeg' width='2048' height="1536" alt='img'></Image>
+                </SwiperSlide>
+                <SwiperSlide className={styles.galleryslides}>
+                  <Image src='/images/G3.jpg' height='4032' width="3024" alt='img'></Image>
+                </SwiperSlide>
+                <SwiperSlide className={styles.galleryslides}>
+                  <Image src='/images/G7.jpg' width='4032' height="3024"  alt='img'></Image>
+                </SwiperSlide>
+                <SwiperSlide className={styles.galleryslides}>
+                  <Image src='/images/G6.jpg' height='4032' width="3024"alt='img'></Image>
+                </SwiperSlide>
+                <SwiperSlide className={styles.galleryslides}>
+                  <Image src='/images/G4.jpg' width='3024' height="4032" alt='img'></Image>
+                </SwiperSlide>
+                <SwiperSlide className={styles.galleryslides}>
+                  <Image src='/images/G2.jpeg' height='2048' width="1536" alt='img'></Image>
+                </SwiperSlide>
+                <SwiperSlide className={styles.galleryslides}>
+                  <Image src='/images/G8.jpg' width='4032' height="3024" alt='img'></Image>
+                </SwiperSlide>
+                <SwiperSlide className={styles.galleryslides}>
+                  <Image src='/images/G5.jpg' width='4032' height="3024"alt='img'></Image>
+                </SwiperSlide>
+                </Swiper>
+               
+            </Box>
+          </Grid>
+        </Grid>
 
       </Box>
     </Box>
