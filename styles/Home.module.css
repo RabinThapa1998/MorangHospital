@@ -4,3 +4,13 @@
     background: #f6f6f6;
     padding: 20px;
 }
+
+.box{
+    transform: translateX(-50%);
+    opacity: 0;
+}
+.appear{
+    transition: opacity 0.5s ease-in;
+   transform: translateX(0) !important;
+   opacity: 1;
+  }

@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 import { styled, alpha } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
-import { version } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 
 const useStyle = makeStyles({
@@ -36,15 +36,52 @@ const MainSwiperHover = styled('div')(({ theme }) => ({
 
 export default function Home() {
   const classes = useStyle()
+  const [isVisible, setIsVisible] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(true)
+  const healthContainerRef = useRef(null)
+  const options = {
+    threshold:1
+  }
+  console.log("outside isloaded",isLoaded)
+
+  useEffect(() => {
+    if(isLoaded)
+    {
+     setIsLoaded(false);
+     console.log('inside isloaded', isLoaded)
+      const boxobserver = new IntersectionObserver(
+      function(entries,boxobserver){
+        entries.forEach(entry=>{
+          if (entry.isIntersecting){
+            // console.log(entry.isIntersecting)
+            setIsVisible(true);
+            boxobserver.unobserve(entry.target);
+          }
+          else{
+            setIsVisible(false)
+          }
+        })
+      }, options)
+      if(healthContainerRef.current) 
+     { boxobserver.observe(healthContainerRef.current)}
+    }
+    return () => {
+    
+      if(healthContainerRef.current)
+      boxobserver.unobserve(healthContainerRef.current)
+    }
+  }, [healthContainerRef ]) 
+
+  
   return (
-    <Box sx={{ margin: '10px' }} >
+    <Box sx={{ margin: '0px', p:3 }} >
       <Grid container xs={12} sx={{ alignItems: 'stretch' }}>
         <Grid item sm={5} xs={12} >
-          <Paper elevation={0} sx={{ m: 4, height: 'auto' }}>
+          <Paper elevation={0} sx={{ p:0, height: 'auto' }}>
             <Typography variant='h5' sx={{ fontWeight: '600', textAlign: 'start' }} color='text.secondary'>Welcome To</Typography>
             <Typography variant='h2' sx={{ fontWeight: '900', textAlign: 'start', fontSize: '60px' }} color='primary'>Morang <ins style={{ fontWeight: '900', textAlign: 'start', fontSize: '65px' }}>  Hospital</ins></Typography>
           </Paper>
-          <Paper elevation={1} sx={{ m: 4, height: 'auto' }}>
+          <Paper elevation={1} sx={{ mt: 5, height: 'auto' }}>
             <Swiper
               modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
 
@@ -59,7 +96,7 @@ export default function Home() {
             // direction={'vertical'}
             >
               <SwiperSlide>
-                <Box sx={{ height: '300px', p: 5 }}>
+                <Box sx={{ height: '300px', p:5 }}>
                   <Typography variant="h5" color='text.secondary'>Daily OPD Service</Typography>
                   <Typography variant="h4">By:</Typography>
                   <Stack direction='row' spacing={2} sx={{ mt: 2 }}>
@@ -95,7 +132,7 @@ export default function Home() {
           </Paper>
         </Grid>
         <Grid item sm={7} xs={12}>
-          <Paper elevation={1} sx={{ height: 'auto', m: 4 }} className={classes.heroswiperpaper}>
+          <Paper elevation={1} sx={{ height: 'auto', mx: 3 }} className={classes.heroswiperpaper}>
 
             <Swiper
               modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -110,19 +147,19 @@ export default function Home() {
             >
               <SwiperSlide>
                 <Typography variant='h5' sx={{ textAlign: 'center', fontWeight: '700', color: 'primary.main', py: 0 }} >Premises</Typography>
-                <Image src='/images/mh.jpeg' width='2048' height='1536' ></Image>
+                <Image src='/images/mh.jpeg' width='2048' height='1536' alt='img'></Image>
               </SwiperSlide>
               <SwiperSlide>
                 <Typography variant='h6' sx={{ textAlign: 'center', fontWeight: '700', color: 'primary.main', py: 0 }} >Parking</Typography>
-                <Image src='/images/4.jpg' width='2048' height='1536' ></Image>
+                <Image src='/images/4.jpg' width='2048' height='1536' alt='img' ></Image>
               </SwiperSlide>
               <SwiperSlide>
                 <Typography variant='h6' sx={{ textAlign: 'center', fontWeight: '700', color: 'primary.main', py: 0 }} >Premises</Typography>
-                <Image src='/images/mh.jpeg' width='2048' height='1536' ></Image>
+                <Image src='/images/mh.jpeg' width='2048' height='1536' alt='img'></Image>
               </SwiperSlide>
               <SwiperSlide>
                 <Typography variant='h6' sx={{ textAlign: 'center', fontWeight: '700', color: 'primary.main', py: 0 }} >Premises</Typography>
-                <Image src='/images/mh.jpeg' width='2048' height='1536' ></Image>
+                <Image src='/images/mh.jpeg' width='2048' height='1536' alt='img'></Image>
               </SwiperSlide>
 
             </Swiper>
@@ -130,8 +167,8 @@ export default function Home() {
         </Grid>
       </Grid>
 
-
-      <Box sx={{ flexGrow: '1', mt: 1 }}>
+      <div ref={healthContainerRef} className={isVisible ? 'appear' : 'box'}>
+      <Box sx={{ flexGrow: '1', mt: 1 }} >
         <Typography variant="h4" sx={{ fontWeight: '700', color: 'text.secondary' }}>Our Health Specialist</Typography>
         <Swiper
           // install Swiper modules
@@ -202,6 +239,7 @@ export default function Home() {
 
         </Swiper>
       </Box>
+      </div>
 
 
       <Box sx={{ flexGrow: '1', mt: 5 }}>

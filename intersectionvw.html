@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intersection Viewer</title>
+    
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        section {
+            height: 50vh;
+            width: 100%;
+            margin-bottom: 50vh;
+        }
+
+        section:nth-child(odd) {
+            background: lightcoral
+        }
+        .headd.appear{
+            background-color: blue !important;
+        }
+        .headd{
+            position: fixed;
+            top: 0px;
+            width: 100%;
+            transition: background-color 0.5s ease;
+        }
+        section{
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            grid-template-columns: repeat(2,1fr);
+            height: auto;
+            border: 2px dashed black;
+            margin-top: 110vh;
+            row-gap: 10px;
+            column-gap: 50px;
+            width: 100vw;
+            overflow-x: hidden;
+        }
+        .grid-item{
+            height: 200px ;
+            width: 100% ;
+
+        }
+        .right{
+            transform: translateX(50%);
+        }
+        .left{
+            transform: translateX(-50%);
+        }
+        .slide{
+            opacity: 0;
+            transition: opacity 0.25s ease-in, transform 0.5s ease-in;
+        }
+        .slide.appear{
+            opacity: 1;
+            transform: translateX(0);
+        }
+    
+    </style>
+
+</head>
+
+<body>
+    <header class="headd">
+       <div>
+        <h1>Heading</h1>
+       </div>
+    </header>
+    <section class=" section">
+        <div class="grid-item slide left">
+            <h1>Content</h1>
+            <img data-src="https://picsum.photos/id/10/200/200" alt="">
+        </div>
+        <div class="grid-item slide right"><h1>Content</h1>
+        
+            <img data-src="https://picsum.photos/id/20/200/200" alt="">
+        </div>
+        <div class="grid-item slide left"><h1>Content</h1>
+            <img data-src="https://picsum.photos/id/30/200/200" alt="">
+        </div>
+        <div class="grid-item slide right"><h1>Content</h1>
+            <img data-src="https://picsum.photos/id/40/200/200" alt="">
+        </div>
+        <div class="grid-item slide left"><h1>Content</h1>
+            <img data-src="https://picsum.photos/id/50/200/200" alt="">
+        </div>
+        <div class="grid-item slide right"><h1>Content</h1>
+            <img data-src="https://picsum.photos/id/60/200/200" alt="">
+        </div>
+    </section>
+
+    <script src="inter.js"></script>
+</body>
+
+
+</html>

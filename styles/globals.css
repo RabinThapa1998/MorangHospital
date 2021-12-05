@@ -23,3 +23,13 @@ a{
   left: auto;
 
 }
+.box{
+  /* transform: translateX(-50%); */
+  opacity: 0.25;
+
+}
+.appear{
+  transition: transform 0.5s ease-in,opacity 0.5s ease;
+ /* transform: translateX(0) ; */
+ opacity: 1;
+}
