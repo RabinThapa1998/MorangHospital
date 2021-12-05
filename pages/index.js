@@ -81,7 +81,7 @@ export default function Home() {
           <Typography variant='h5' sx={{ fontWeight: '900', textAlign: 'center', textDecoration: 'underline' }} color='text.primary'>Since 2007</Typography>
         </Paper>
 
-        <Paper elevation={0} sx={{ mt: 13, height: 'auto', background: 'transparent' }}>
+        <Paper elevation={0} sx={{ mt: 13, pb:5,height: 'auto', background: 'transparent' }}>
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay, EffectFade]}
             // navigation
@@ -240,14 +240,32 @@ export default function Home() {
           <Swiper
             // install Swiper modules
             modules={[Navigation, Pagination, Scrollbar, A11y]}
-            spaceBetween={50}
-            slidesPerView={4}
+            spaceBetween={10}
+            slidesPerView={1}
             // navigation
             // pagination={{ clickable: true }}
             // scrollbar={{ draggable: true }}
             onSwiper={(swiper) => console.log(swiper)}
             onSlideChange={() => console.log('slide change')}
             className={styles.departmentswiper}
+            breakpoints={
+              { // when window width is >= 320px
+                425: {
+                  slidesPerView: 2,
+                  spaceBetween: 20
+                },
+                650: {
+                  slidesPerView: 3,
+                  spaceBetween: 20
+                },
+               
+                // when window width is >= 640px
+                768: {
+                  slidesPerView: 4,
+                  spaceBetween: 40
+                }
+              }
+            }
           >
 
             <SwiperSlide>
@@ -337,13 +355,13 @@ export default function Home() {
 
       <Box sx={{ flexGrow: '1', mt: 5 }}>
         <Typography variant="h4" sx={{ fontWeight: '700', color: 'text.secondary' }}>Gallery</Typography>
-        <Grid container sx={{p:2}}>
+        <Grid container sx={{ p: 2 }}>
           <Grid item xs={12} sm={6}>
             <Typography variant='h2' color='text.secondary'>We Share Our Joy.</Typography>
             <Typography variant='body2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, vitae similique! Quaerat, optio? Exercitationem consequatur aut odit nulla. Fugiat iste iure veniam doloribus distinctio vero cumque ullam. Corporis, earum ipsum.</Typography>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Box sx={{ overflowY: 'hidden' }}>
+            <Box sx={{ overflow: 'hidden' }}>
               <Swiper
                 modules={[EffectCards]}
                 effect='cards'
@@ -357,10 +375,10 @@ export default function Home() {
                   <Image src='/images/G3.jpg' height='4032' width="3024" alt='img'></Image>
                 </SwiperSlide>
                 <SwiperSlide className={styles.galleryslides}>
-                  <Image src='/images/G7.jpg' width='4032' height="3024"  alt='img'></Image>
+                  <Image src='/images/G7.jpg' width='4032' height="3024" alt='img'></Image>
                 </SwiperSlide>
                 <SwiperSlide className={styles.galleryslides}>
-                  <Image src='/images/G6.jpg' height='4032' width="3024"alt='img'></Image>
+                  <Image src='/images/G6.jpg' height='4032' width="3024" alt='img'></Image>
                 </SwiperSlide>
                 <SwiperSlide className={styles.galleryslides}>
                   <Image src='/images/G4.jpg' width='3024' height="4032" alt='img'></Image>
@@ -372,10 +390,10 @@ export default function Home() {
                   <Image src='/images/G8.jpg' width='4032' height="3024" alt='img'></Image>
                 </SwiperSlide>
                 <SwiperSlide className={styles.galleryslides}>
-                  <Image src='/images/G5.jpg' width='4032' height="3024"alt='img'></Image>
+                  <Image src='/images/G5.jpg' width='4032' height="3024" alt='img'></Image>
                 </SwiperSlide>
-                </Swiper>
-               
+              </Swiper>
+
             </Box>
           </Grid>
         </Grid>

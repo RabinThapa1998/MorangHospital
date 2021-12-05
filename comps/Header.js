@@ -68,7 +68,7 @@ function Header(props) {
                             </Link>
                             <Link href='/contactus'>
                                 <LinkWrapper>
-                                    <a><Typography variant='h6' component='div' sx={{ m: 2 }}>Contact us</Typography></a>
+                                    <a><Typography variant='h6' component='div' sx={{ m: 2 }}>Contact</Typography></a>
                                 </LinkWrapper>
                             </Link>
                         </Toolbar>

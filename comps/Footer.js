@@ -30,7 +30,7 @@ const Footer = () => {
                             <FacebookRoundedIcon sx={{ mr: 2, fontSize: '30px' }} color='info'></FacebookRoundedIcon>
                             <Typography variant='h5' component='span' >Social Media</Typography>
                         </Box>
-                        <a href="#" >
+                        <a href="https://www.facebook.com/moranghospitalpvtltd" target="_blank"  >
                         <Typography variant='h6' component='p' sx={{ ml: 6, }}>FaceBook</Typography>
                         </a>
                     </Grid>
