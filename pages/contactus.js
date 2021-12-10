@@ -58,22 +58,10 @@ const map = {
                     </Paper>
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <Paper sx={{ height: '100%', width: '100%' }}>
-                        <div style={{ height: '100%', width: '100%' }}>
-                            <GoogleMapReact
-                                bootstrapURLKeys={{ key: 'AIzaSyDbzLhMcNYraDCT0Ys7i6di_9FTOIHhPA4' }}
-                                defaultCenter={map.center}
-                                defaultZoom={map.zoom}
-                                yesIWantToUseGoogleMapApiInternals
-                            >
-                                <AnyReactComponent
-                                    lat={26.65}
-                                    lng={ 87.55}
-                                    text="My Marker"
-                                />
-                            </GoogleMapReact>
-                        </div>
-                    </Paper>
+                    <Box elevation='0' sx={{ height: '100%', width: '100%', p:0 ,m:0 }}>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3565.696780162873!2d87.5576269309502!3d26.658189248003456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e589eaa84d9487%3A0xc4b77d18a1c6e99d!2sMorang%20Hospital!5e0!3m2!1sen!2snp!4v1639119911773!5m2!1sen!2snp" 
+                    width="600" height="450"  loading="lazy" ></iframe>
+                    </Box>
 
                 </Grid>
             </Grid>

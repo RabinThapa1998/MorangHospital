@@ -7,6 +7,8 @@ import { Navigation, Pagination, Scrollbar, A11y, Autoplay, EffectFade, EffectCa
 import { styled, alpha } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 import { useRef, useState, useEffect } from 'react';
+import { Precare, Customercare, Xray ,Lab} from '../comps/svgs';
+import { boxSizing } from '@mui/system';
 
 
 const useStyle = makeStyles({
@@ -72,7 +74,7 @@ export default function Home() {
 
 
   return (
-    <Box sx={{ margin: '0px', p: 0, overflowX: 'hidden' }}>
+    <Box sx={{ margin: '0px', overflowX: 'hidden' }}>
       <Box className={styles.homebg} sx={{ px: 3, pt: 2 }}>
 
         <Paper elevation={0} sx={{ p: 0, height: 'auto', background: 'transparent' }}>
@@ -81,7 +83,7 @@ export default function Home() {
           <Typography variant='h5' sx={{ fontWeight: '900', textAlign: 'center', textDecoration: 'underline' }} color='text.primary'>Since 2007</Typography>
         </Paper>
 
-        <Paper elevation={0} sx={{ mt: 13, pb:5,height: 'auto', background: 'transparent' }}>
+        <Paper elevation={0} sx={{ mt: 13, pb: 5, height: 'auto', background: 'transparent' }}>
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay, EffectFade]}
             // navigation
@@ -235,8 +237,8 @@ export default function Home() {
       </Box>
 
       <div ref={healthContainerRef} className={isVisible ? 'appear' : 'box'}>
-        <Box sx={{ flexGrow: '1', mt: 1 }} >
-          <Typography variant="h4" sx={{ fontWeight: '700', color: 'text.secondary' }}>Our Health Specialist</Typography>
+        <Box sx={{ flexGrow: '1', mt: 1, px: 4 }} >
+          <Typography variant="h4" sx={{ fontWeight: '700', color: 'primary.main', textAlign: 'center' }}>Our Health Specialist</Typography>
           <Swiper
             // install Swiper modules
             modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -255,10 +257,10 @@ export default function Home() {
                   spaceBetween: 20
                 },
                 650: {
-                  slidesPerView: 3,
+                  slidesPerView: 2,
                   spaceBetween: 20
                 },
-               
+
                 // when window width is >= 640px
                 768: {
                   slidesPerView: 4,
@@ -329,32 +331,30 @@ export default function Home() {
       </div>
 
 
-      <Box sx={{ flexGrow: '1', mt: 5 }}>
-        <Typography variant="h4" sx={{ fontWeight: '700', color: 'text.secondary' }}>Our Services</Typography>
-        <Stack className={styles.departmentswiper} spacing={2}>
-          <Paper elevation={0} sx={{ p: 2 }}>
-            <Typography variant='h6' sx={{ textAlign: 'center', fontWeight: '500', color: 'text.secondary', pt: 2 }} >Highly Equipped Lab</Typography>
-            <Typography variant='h5' sx={{ textAlign: 'center' }}>We test all the basic body</Typography>
-            <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.secondary' }}>Blood Sugar</Typography>
-            <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.secondary' }}>Dengue..</Typography>
-          </Paper>
-          <Paper elevation={0} sx={{ p: 2 }}>
-            <Typography variant='h6' sx={{ textAlign: 'center', fontWeight: '500', color: 'text.secondary', pt: 2 }} >Highly Equipped Lab</Typography>
-            <Typography variant='h5' sx={{ textAlign: 'center' }}>We test all the basic body</Typography>
-            <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.secondary' }}>Blood Sugar</Typography>
-            <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.secondary' }}>Dengue..</Typography>
-          </Paper>
-          <Paper elevation={0} sx={{ p: 2 }}>
-            <Typography variant='h6' sx={{ textAlign: 'center', fontWeight: '500', color: 'text.secondary', pt: 2 }} >Highly Equipped Lab</Typography>
-            <Typography variant='h5' sx={{ textAlign: 'center' }}>We test all the basic body</Typography>
-            <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.secondary' }}>Blood Sugar</Typography>
-            <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.secondary' }}>Dengue..</Typography>
-          </Paper>
+      <Box sx={{ flexGrow: '1', mt: 5, px: 4 }}>
+        <Typography variant="h4" sx={{ fontWeight: '700', color: 'primary.main', textAlign: 'center'}}>Our Services</Typography>
+        <Stack direction={{ xs: 'column', md: 'row' }}  justifyContent="space-around" alignItems="center" sx={{mt:3}}>
+          <Box sx={{pb:2}}>
+            <Precare />
+            <Typography variant={'h5'} sx={{ fontWeight: '700',textAlign:'center' }}>Pre Emergency Care</Typography>
+          </Box>
+          <Box sx={{pb:2}}>
+            <Xray />
+            <Typography variant={'h5'} sx={{ fontWeight: '700',textAlign:'center' }}>Radiology</Typography>
+          </Box>
+          <Box sx={{pb:2}}>
+            <Customercare  />
+            <Typography variant={'h5'} sx={{ fontWeight: '700',textAlign:'center' }}>Customer Care</Typography>
+          </Box>
+          <Box sx={{pb:2}}>
+            <Lab />
+            <Typography variant={'h5'} sx={{ fontWeight: '700',textAlign:'center' }}>Lab</Typography>
+          </Box>
         </Stack>
       </Box>
 
-      <Box sx={{ flexGrow: '1', mt: 5 }}>
-        <Typography variant="h4" sx={{ fontWeight: '700', color: 'text.secondary' }}>Gallery</Typography>
+      <Box sx={{ flexGrow: '1', mt: 5, p: 4 }}>
+        <Typography variant="h4" sx={{ fontWeight: '700', color: 'primary.main', textAlign: 'center' }}>Gallery</Typography>
         <Grid container sx={{ p: 2 }}>
           <Grid item xs={12} sm={6}>
             <Typography variant='h2' color='text.secondary'>We Share Our Joy.</Typography>

@@ -33,3 +33,8 @@ a{
  /* transform: translateX(0) ; */
  opacity: 1;
 }
+iframe{
+  border: 0;
+  width: 100%;
+  padding: 0;
+}

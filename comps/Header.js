@@ -49,7 +49,9 @@ function Header(props) {
                     <AppBar>
                         <Toolbar sx={{ justifyContent: 'space-between', minHeight: '36px',background:'#f6f6f6', color:'black'}} variant='dense'>
                             <Typography>24 Hr Emergency & Ambulance service:-021555343</Typography>
+                            <a href="https://goo.gl/maps/CZdJrsQqwgZdxJhb6"  target='_blank'>
                             <Typography>Get Directions</Typography>
+                            </a> 
                         </Toolbar>
                         <Toolbar>
                             <Typography variant='h3' component='div'>MH</Typography>
