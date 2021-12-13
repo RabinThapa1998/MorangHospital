@@ -193,7 +193,6 @@ export default function Home() {
                   spaceBetween: 20,
 
                 },
-
                 // when window width is >= 640px
                 768: {
                   slidesPerView: 4,
