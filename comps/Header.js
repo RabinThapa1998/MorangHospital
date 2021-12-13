@@ -9,6 +9,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Slide from '@mui/material/Slide';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import NavigationIcon from '@mui/icons-material/Navigation';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 
 function HideOnScroll(props) {
 
@@ -32,9 +33,9 @@ const LinkWrapper = styled('div')(({ theme }) => ({
     borderBottom: '4px solid transparent',
     transition: 'color .5s ease, borderBottom .5s ease',
     '&:hover': {
-        color: 'black',
+        color: '#ddd',
         cursor: 'pointer',
-        borderBottom: '4px solid blue',
+        borderBottom: '4px solid #ddd',
     }
 }));
 
@@ -49,7 +50,11 @@ function Header(props) {
             <HideOnScroll {...props}>
                 <AppBar>
                     <Toolbar sx={{ justifyContent: 'space-between', minHeight: '36px', background: '#eee', color: 'black' }} variant='dense'>
-                        <Typography variant='body2' sx={{ fontWeight: '700' }} >24 Hr Emergency & Ambulance service:-021555343</Typography>
+                    <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                        <LocalPhoneIcon color='primary'/>
+                        <Typography variant='body2' sx={{ fontWeight: '700' ,pl:2}} color="primary">24 Hr Emergency & Ambulance service:-021555343</Typography>
+                        </Box>
+                        
                         <a href="https://goo.gl/maps/CZdJrsQqwgZdxJhb6" target='_blank' >
                             <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
                                 <Typography color={'primary.main'} variant='body2' sx={{ fontWeight: '700' }} className='fontcolorhover' >Get Directions</Typography>

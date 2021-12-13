@@ -110,8 +110,8 @@ export default function Home() {
                 return (
                   <SwiperSlide>
                     <Box sx={{ height: 'auto', p: 0 }}>
-                      <Typography variant="h5" color='common.white'>{eachdata.servname}</Typography>
-                      <Typography variant="h4">By:</Typography>
+                      <Typography variant="h5" color='common.white' sx={{fontWeight:'700'}}>{eachdata.servname}</Typography>
+                      <Typography variant="h5" color='common.white'>By:</Typography>
                       <Stack direction='row' spacing={2} sx={{ mt: 2 }}>
                         <Avatar
                           alt={eachdata.dname}
