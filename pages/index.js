@@ -73,7 +73,7 @@ export default function Home() {
 
   return (
     <Box sx={{ margin: '0px', overflowX: 'hidden' }}>
-      <Box className={styles.homebg} sx={{ px: 3, pt: 2 }}>
+      <Box className={styles.homebg} sx={{ pt: 2 }} px={{ sm:3, xs:2}}>
 
         <Paper elevation={0} sx={{ p: 0, height: 'auto', background: 'transparent' }}>
           <Typography variant='h3' sx={{ fontWeight: '600', textAlign: 'center' }} color='text.secondary'>Welcome To </Typography>
@@ -170,7 +170,7 @@ export default function Home() {
       </Box>
 
       <div ref={healthContainerRef} className={isVisible ? 'appear' : 'box'}>
-        <Box sx={{ flexGrow: '1', mt: 1, px: 4 }} >
+        <Box sx={{ flexGrow: '1', mt: 3 }} px={{sm:4, xs:0}}>
           <Typography variant="h4" sx={{ fontWeight: '700', color: 'primary.main', textAlign: 'center' }}>Our Health Specialist</Typography>
           <Swiper
             // install Swiper modules
@@ -265,7 +265,7 @@ export default function Home() {
         </Stack>
       </Box>
 
-      <Box sx={{ flexGrow: '1', mt: 5, p: 4 }}>
+      <Box sx={{ flexGrow: '1', mt: 5, pt: 4 }} px={{sm:4, xs:0}}>
         <Typography variant="h4" sx={{ fontWeight: '700', color: 'primary.main', textAlign: 'center' }}>Gallery</Typography>
         <Grid container sx={{ p: 2 }}>
           <Grid item xs={12} sm={6}>
