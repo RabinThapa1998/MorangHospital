@@ -8,6 +8,7 @@ import Link from 'next/link'
 import CssBaseline from '@mui/material/CssBaseline';
 import Slide from '@mui/material/Slide';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
+import NavigationIcon from '@mui/icons-material/Navigation';
 
 function HideOnScroll(props) {
 
@@ -46,36 +47,39 @@ function Header(props) {
         <>
             <CssBaseline />
             <HideOnScroll {...props}>
-                    <AppBar>
-                        <Toolbar sx={{ justifyContent: 'space-between', minHeight: '36px',background:'#f6f6f6', color:'black'}} variant='dense'>
-                            <Typography>24 Hr Emergency & Ambulance service:-021555343</Typography>
-                            <a href="https://goo.gl/maps/CZdJrsQqwgZdxJhb6"  target='_blank'>
-                            <Typography>Get Directions</Typography>
-                            </a> 
-                        </Toolbar>
-                        <Toolbar>
-                            <Typography variant='h3' component='div'>MH</Typography>
-                            <Box sx={{ flexGrow: '1' }} />
-                            <Link href='/'>
-                                <LinkWrapper>
-                                    <a><Typography variant='h6' component='div' sx={{ m: 2 }}>Home</Typography></a>
-                                </LinkWrapper>
-                            </Link>
+                <AppBar>
+                    <Toolbar sx={{ justifyContent: 'space-between', minHeight: '36px', background: '#eee', color: 'black' }} variant='dense'>
+                        <Typography variant='body2' sx={{ fontWeight: '700' }} >24 Hr Emergency & Ambulance service:-021555343</Typography>
+                        <a href="https://goo.gl/maps/CZdJrsQqwgZdxJhb6" target='_blank' >
+                            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                                <Typography color={'primary.main'} variant='body2' sx={{ fontWeight: '700' }} className='fontcolorhover' >Get Directions</Typography>
+                                <NavigationIcon color='primary' />
+                            </Box>
+                        </a>
+                    </Toolbar>
+                    <Toolbar>
+                        <Typography variant='h3' component='div'>MH</Typography>
+                        <Box sx={{ flexGrow: '1' }} />
+                        <Link href='/'>
+                            <LinkWrapper>
+                                <a><Typography variant='h6' component='div' sx={{ m: 2 }}>Home</Typography></a>
+                            </LinkWrapper>
+                        </Link>
 
 
-                            <Link href='/reports'>
-                                <LinkWrapper>
-                                    <a><Typography variant='h6' component='div' sx={{ m: 2 }}>Reports</Typography></a>
-                                </LinkWrapper>
-                            </Link>
-                            <Link href='/contactus'>
-                                <LinkWrapper>
-                                    <a><Typography variant='h6' component='div' sx={{ m: 2 }}>Contact</Typography></a>
-                                </LinkWrapper>
-                            </Link>
-                        </Toolbar>
-                    </AppBar>
-    
+                        <Link href='/reports'>
+                            <LinkWrapper>
+                                <a><Typography variant='h6' component='div' sx={{ m: 2 }}>Reports</Typography></a>
+                            </LinkWrapper>
+                        </Link>
+                        <Link href='/contactus'>
+                            <LinkWrapper>
+                                <a><Typography variant='h6' component='div' sx={{ m: 2 }}>Contact</Typography></a>
+                            </LinkWrapper>
+                        </Link>
+                    </Toolbar>
+                </AppBar>
+
             </HideOnScroll>
         </>
 

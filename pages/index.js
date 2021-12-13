@@ -7,9 +7,11 @@ import { Navigation, Pagination, Scrollbar, A11y, Autoplay, EffectFade, EffectCa
 import { styled, alpha } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 import { useRef, useState, useEffect } from 'react';
-import { Precare, Customercare, Xray ,Lab} from '../comps/svgs';
+import { Precare, Customercare, Xray, Lab } from '../comps/svgs';
 import { boxSizing } from '@mui/system';
-
+import Link from 'next/link'
+import Typewriter from 'typewriter-effect';
+import data from '../json/data.json'
 
 const useStyle = makeStyles({
   departmentcard: {
@@ -38,39 +40,35 @@ const MainSwiperHover = styled('div')(({ theme }) => ({
 
 export default function Home() {
   const classes = useStyle()
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
   const [isLoaded, setIsLoaded] = useState(true)
   const healthContainerRef = useRef(null)
   const options = {
     threshold: 1
   }
-  console.log("outside isloaded", isLoaded)
 
-  useEffect(() => {
-    if (isLoaded) {
-      setIsLoaded(false);
-      console.log('inside isloaded', isLoaded)
-      const boxobserver = new IntersectionObserver(
-        function (entries, boxobserver) {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              // console.log(entry.isIntersecting)
-              setIsVisible(true);
-              boxobserver.unobserve(entry.target);
-            }
-            else {
-              setIsVisible(false)
-            }
-          })
-        }, options)
-      if (healthContainerRef.current) { boxobserver.observe(healthContainerRef.current) }
-    }
-    return () => {
-
-      // if(healthContainerRef.current)
-      // boxobserver.unobserve(healthContainerRef.current)
-    }
-  }, [healthContainerRef])
+  // useEffect(() => {
+  //   if (isLoaded) {
+  //     setIsLoaded(false);
+  //     console.log('inside isloaded', isLoaded)
+  //     const boxobserver = new IntersectionObserver(
+  //       function (entries, boxobserver) {
+  //         entries.forEach(entry => {
+  //           if (entry.isIntersecting) {
+  //             // console.log(entry.isIntersecting)
+  //             setIsVisible(true);
+  //             boxobserver.unobserve(entry.target);
+  //           }
+  //           else {
+  //             setIsVisible(false)
+  //           }
+  //         })
+  //       }, options)
+  //     if (healthContainerRef.current) { boxobserver.observe(healthContainerRef.current) }
+  //   }
+  //   return () => {
+  //   }
+  // }, [healthContainerRef])
 
 
   return (
@@ -78,9 +76,18 @@ export default function Home() {
       <Box className={styles.homebg} sx={{ px: 3, pt: 2 }}>
 
         <Paper elevation={0} sx={{ p: 0, height: 'auto', background: 'transparent' }}>
-          <Typography variant='h3' sx={{ fontWeight: '600', textAlign: 'center' }} color='text.secondary'>Welcome To</Typography>
+          <Typography variant='h3' sx={{ fontWeight: '600', textAlign: 'center' }} color='text.secondary'>Welcome To </Typography>
           <Typography variant='h2' sx={{ fontWeight: '900', fontSize: '80px', textAlign: 'center', textDecoration: 'underline' }} color='text.primary'>Morang Hospital</Typography>
-          <Typography variant='h5' sx={{ fontWeight: '900', textAlign: 'center', textDecoration: 'underline' }} color='text.primary'>Since 2007</Typography>
+          <Typography variant='h5' sx={{ fontWeight: '900', textAlign: 'center', textDecoration: 'underline' }} color='text.primary'>
+            <Typewriter
+              options={{
+                strings: ['Since 2007'],
+                autoStart: true,
+                loop: true,
+                wrapperClassName: 'type',
+
+              }}
+            /></Typography>
         </Paper>
 
         <Paper elevation={0} sx={{ mt: 13, pb: 5, height: 'auto', background: 'transparent' }}>
@@ -98,104 +105,30 @@ export default function Home() {
               { crossFade: true }
             }
           >
-            <SwiperSlide>
-              <Box sx={{ height: 'auto', p: 0 }}>
-                <Typography variant="h5" color='text.secondary'>Daily Physician Service</Typography>
-                <Typography variant="h4">By:</Typography>
-                <Stack direction='row' spacing={2} sx={{ mt: 2 }}>
-                  <Avatar
-                    alt="Umesh Guragain"
-                    // src="/images/umesh.jpg"
-                    sx={{ width: 72, height: 72 }}
-                  />
-                  <Box>
-                    <Typography variant="h3" sx={{ fontWeight: '700', color: 'common.white' }} >Dr.Umesh Guragain</Typography>
-                    <Typography variant='body1' sx={{ textAlign: 'left', color: 'common.white' }}>MBBS.MD</Typography>
-                    <Typography variant='body1' sx={{ textAlign: 'left', color: 'common.white' }}>Senior Physician and MD in Internal Medicine</Typography>
-                  </Box>
-                </Stack>
-
-              </Box>
-            </SwiperSlide>
-            <SwiperSlide>
-              <Box sx={{ height: 'auto', p: 0 }}>
-                <Typography variant="h5" color='text.secondary'>Daily Orthopedic service</Typography>
-                <Typography variant="h4">By:</Typography>
-                <Stack direction='row' spacing={2} sx={{ mt: 2 }}>
-                  <Avatar
-                    alt="Ravi kumar Shah"
-                    // src="/images/umesh.jpg"
-                    sx={{ width: 72, height: 72 }}
-                  />
-                  <Box>
-                    <Typography variant="h3" sx={{ fontWeight: '700', color: 'common.white' }} >Dr.Ravi Kumar Shah</Typography>
-                    <Typography variant='body1' sx={{ textAlign: 'left', color: 'common.white' }}>MBBS.MS</Typography>
-                    <Typography variant='body1' sx={{ textAlign: 'left', color: 'common.white' }}>Orthopedic and Trauma Surgeon</Typography>
-                  </Box>
-                </Stack>
-
-              </Box>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <Box sx={{ height: 'auto', p: 0 }}>
-                <Typography variant="h5" color='text.secondary'>Daily Pediatric Service</Typography>
-                <Typography variant="h4">By:</Typography>
-                <Stack direction='row' spacing={2} sx={{ mt: 2 }}>
-                  <Avatar
-                    alt="Sunil Adhikari"
-                    // src="/images/umesh.jpg"
-                    sx={{ width: 72, height: 72 }}
-                  />
-                  <Box>
-                    <Typography variant="h3" sx={{ fontWeight: '700', color: 'common.white' }} >Dr.Sunil Adhikari</Typography>
-                    <Typography variant='body1' sx={{ textAlign: 'left', color: 'common.white' }}>MBBS.MD</Typography>
-                    <Typography variant='body1' sx={{ textAlign: 'left', color: 'common.white' }}>Pediatrician</Typography>
-                  </Box>
-                </Stack>
-
-              </Box>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <Box sx={{ height: 'auto', p: 0 }}>
-                <Typography variant="h5" color='text.secondary'>Daily Gynae and OBS Service</Typography>
-                <Typography variant="h4">By:</Typography>
-                <Stack direction='row' spacing={2} sx={{ mt: 2 }}>
-                  <Avatar
-                    alt="Mamata Pandey"
-                    // src="/images/umesh.jpg"
-                    sx={{ width: 72, height: 72 }}
-                  />
-                  <Box>
-                    <Typography variant="h3" sx={{ fontWeight: '700', color: 'common.white' }} >Dr.Mamata Pandey</Typography>
-                    <Typography variant='body1' sx={{ textAlign: 'left', color: 'common.white' }}>MBBS.MD</Typography>
-                    <Typography variant='body1' sx={{ textAlign: 'left', color: 'common.white' }}>Gynae and OBS</Typography>
-                  </Box>
-                </Stack>
-
-              </Box>
-            </SwiperSlide>
-            <SwiperSlide>
-              <Box sx={{ height: 'auto', p: 0 }}>
-                <Typography variant="h5" color='text.secondary'>Daily USG Service</Typography>
-                <Typography variant="h4">By:</Typography>
-                <Stack direction='row' spacing={2} sx={{ mt: 2 }}>
-                  <Avatar
-                    alt="Rajiv Rizal"
-                    // src="/images/umesh.jpg"
-                    sx={{ width: 72, height: 72 }}
-                  />
-                  <Box>
-                    <Typography variant="h3" sx={{ fontWeight: '700', color: 'common.white' }} >Dr.Rajiv Rizal</Typography>
-                    <Typography variant='body1' sx={{ textAlign: 'left', color: 'common.white' }}>MBBS.MD</Typography>
-                    <Typography variant='body1' sx={{ textAlign: 'left', color: 'common.white' }}>Radiologist</Typography>
-                  </Box>
-                </Stack>
-
-              </Box>
-            </SwiperSlide>
-
+            {
+              data.dailyservices.map(eachdata => {
+                return (
+                  <SwiperSlide>
+                    <Box sx={{ height: 'auto', p: 0 }}>
+                      <Typography variant="h5" color='common.white'>{eachdata.servname}</Typography>
+                      <Typography variant="h4">By:</Typography>
+                      <Stack direction='row' spacing={2} sx={{ mt: 2 }}>
+                        <Avatar
+                          alt={eachdata.dname}
+                          // src="/images/umesh.jpg"
+                          sx={{ width: 72, height: 72 }}
+                        />
+                        <Box>
+                          <Typography variant="h3" sx={{ fontWeight: '700', color: 'common.white' }} >{eachdata.dname}</Typography>
+                          <Typography variant='body1' sx={{ textAlign: 'left', color: 'common.white' }}>{eachdata.deg}</Typography>
+                          <Typography variant='body1' sx={{ textAlign: 'left', color: 'common.white' }}>{eachdata.position}</Typography>
+                        </Box>
+                      </Stack>
+                    </Box>
+                  </SwiperSlide>
+                )
+              })
+            }
           </Swiper>
         </Paper>
 
@@ -247,108 +180,87 @@ export default function Home() {
             // navigation
             // pagination={{ clickable: true }}
             // scrollbar={{ draggable: true }}
-            onSwiper={(swiper) => console.log(swiper)}
-            onSlideChange={() => console.log('slide change')}
+
             className={styles.departmentswiper}
             breakpoints={
               { // when window width is >= 320px
                 425: {
-                  slidesPerView: 2,
+                  slidesPerView: 1,
                   spaceBetween: 20
                 },
                 650: {
                   slidesPerView: 2,
-                  spaceBetween: 20
+                  spaceBetween: 20,
+
                 },
 
                 // when window width is >= 640px
                 768: {
                   slidesPerView: 4,
-                  spaceBetween: 40
+                  spaceBetween: 20
                 }
               }
             }
           >
-
-            <SwiperSlide>
-              <Paper elevation={0} className={classes.departmentcard} sx={{ p: 2 }}>
-                <Avatar
-                  alt="Umesh Guragain"
-                  src="/images/umesh.jpg"
-                  sx={{ width: 72, height: 72, margin: 'auto' }}
-                  variant="rounded"
-                />
-                <Typography variant='h6' sx={{ textAlign: 'center', fontWeight: '500', color: 'text.secondary', pt: 2 }} >Emergency</Typography>
-                <Typography variant='h5' sx={{ textAlign: 'center' }}>Dr.Umesh Guragain</Typography>
-                <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.secondary' }}>MBBS.MD</Typography>
-                <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.disabled' }}>Senior Physician</Typography>
-              </Paper>
-            </SwiperSlide>
-            <SwiperSlide>
-              <Paper elevation={0} className={classes.departmentcard} sx={{ p: 2 }}>
-                <Avatar
-                  alt="DB Thapa"
-                  src="/images/dbthapa.jpg"
-                  sx={{ width: 72, height: 72, margin: 'auto' }}
-                  variant="rounded"
-                />
-                <Typography variant='h6' sx={{ textAlign: 'center', fontWeight: '500', color: 'text.secondary', pt: 2 }} >OPD</Typography>
-                <Typography variant='h5' sx={{ textAlign: 'center' }}>DB thapa</Typography>
-                <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.secondary' }}>General Medicine</Typography>
-                <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.disabled' }}>Health Assistant</Typography>
-              </Paper>
-            </SwiperSlide>
-            <SwiperSlide>
-              <Paper elevation={0} className={classes.departmentcard} sx={{ p: 2 }}>
-                <Avatar
-                  alt="DB Thapa"
-                  src="/images/dkesh.jpg"
-                  sx={{ width: 72, height: 72, margin: 'auto' }}
-                  variant="rounded"
-                />
-                <Typography variant='h6' sx={{ textAlign: 'center', fontWeight: '500', color: 'text.secondary', pt: 2 }} >OPD</Typography>
-                <Typography variant='h5' sx={{ textAlign: 'center' }}>Dikesh Dhungana</Typography>
-                <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.secondary' }}>General Medicine</Typography>
-                <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.disabled' }}>Health Assistant</Typography>
-              </Paper>
-            </SwiperSlide>
-            <SwiperSlide>
-              <Paper elevation={0} className={classes.departmentcard} sx={{ p: 2 }}>
-                <Avatar
-                  alt="DB Thapa"
-                  src="/images/ganesh.jpg"
-                  sx={{ width: 72, height: 72, margin: 'auto' }}
-                  variant="rounded"
-                />
-                <Typography variant='h6' sx={{ textAlign: 'center', fontWeight: '500', color: 'text.secondary', pt: 2 }} >OPD</Typography>
-                <Typography variant='h5' sx={{ textAlign: 'center' }}>Ganesh Neupane</Typography>
-                <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.secondary' }}>General Medicine</Typography>
-                <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.disabled' }}>Health Assistant</Typography>
-              </Paper>
-            </SwiperSlide>
+            {
+              data.healthspecialist.map(eachdata => {
+                return (
+                  <SwiperSlide>
+                    <Paper elevation={0} className={classes.departmentcard} sx={{ p: 2 }}>
+                      <Avatar
+                        alt={eachdata.dname}
+                        src={eachdata.img}
+                        sx={{ width: 72, height: 72, margin: 'auto' }}
+                        variant="rounded"
+                      />
+                      <Typography variant='h6' sx={{ textAlign: 'center', fontWeight: '500', color: 'text.secondary', pt: 2 }} >{eachdata.department}</Typography>
+                      <Typography variant='h5' sx={{ textAlign: 'center' }}>{eachdata.dname}</Typography>
+                      <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.secondary' }}>{eachdata.deg}</Typography>
+                      <Typography variant='body1' sx={{ textAlign: 'center', color: 'text.disabled' }}>{eachdata.position}</Typography>
+                    </Paper>
+                  </SwiperSlide>
+                )
+              })
+            }
           </Swiper>
         </Box>
       </div>
 
 
       <Box sx={{ flexGrow: '1', mt: 5, px: 4 }}>
-        <Typography variant="h4" sx={{ fontWeight: '700', color: 'primary.main', textAlign: 'center'}}>Our Services</Typography>
-        <Stack direction={{ xs: 'column', md: 'row' }}  justifyContent="space-around" alignItems="center" sx={{mt:3}}>
-          <Box sx={{pb:2}}>
-            <Precare />
-            <Typography variant={'h5'} sx={{ fontWeight: '700',textAlign:'center' }}>Pre Emergency Care</Typography>
+        <Typography variant="h4" sx={{ fontWeight: '700', color: 'primary.main', textAlign: 'center' }}>Our Services</Typography>
+        <Stack direction={{ xs: 'column', md: 'row' }} justifyContent="space-around" alignItems="center" sx={{ mt: 3 }}>
+          <Box sx={{ pb: 2 }}>
+            <Link href="/preemergency">
+              <a>
+                <Precare />
+                <Typography variant={'h5'} sx={{ fontWeight: '700', textAlign: 'center' }} color="common.black">Pre Emergency Care</Typography>
+              </a>
+            </Link>
           </Box>
-          <Box sx={{pb:2}}>
-            <Xray />
-            <Typography variant={'h5'} sx={{ fontWeight: '700',textAlign:'center' }}>Radiology</Typography>
+          <Box sx={{ pb: 2 }}>
+            <Link href='/radiology'>
+              <a>
+                <Xray />
+                <Typography variant={'h5'} sx={{ fontWeight: '700', textAlign: 'center' }} color="common.black">Radiology</Typography>
+              </a>
+            </Link>
           </Box>
-          <Box sx={{pb:2}}>
-            <Customercare  />
-            <Typography variant={'h5'} sx={{ fontWeight: '700',textAlign:'center' }}>Customer Care</Typography>
+          <Box sx={{ pb: 2 }}>
+            <Link href='/customercare'>
+              <a>
+                <Customercare />
+                <Typography variant={'h5'} sx={{ fontWeight: '700', textAlign: 'center' }} color="common.black">Customer Care</Typography>
+              </a>
+            </Link>
           </Box>
-          <Box sx={{pb:2}}>
-            <Lab />
-            <Typography variant={'h5'} sx={{ fontWeight: '700',textAlign:'center' }}>Lab</Typography>
+          <Box sx={{ pb: 2 }}>
+            <Link href='/lab'>
+              <a>
+                <Lab />
+                <Typography variant={'h5'} sx={{ fontWeight: '700', textAlign: 'center' }} color="common.black">Lab</Typography>
+              </a>
+            </Link>
           </Box>
         </Stack>
       </Box>

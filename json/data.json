@@ -1,0 +1,66 @@
+{
+   
+    "healthspecialist": [
+   {
+       "department":"Emergency",
+       "dname":"Dr.Umesh Guragain",
+       "deg":"MBBS.MD",
+       "position":"Senior Physician",
+       "img":"/images/umesh.jpg"
+   },
+   {
+       "department":"OPD",
+       "dname":"DB thapa",
+       "deg":"General Medicine",
+       "position":"Health Assistant",
+       "img":"/images/dbthapa.jpg"
+   },
+   {
+       "department":"OPD",
+       "dname":"Dikesh Dhungana",
+       "deg":"General Medicine",
+       "position":"Health Assistant",
+       "img":"/images/dkesh.jpg"
+   },
+   {
+       "department":"OPD",
+       "dname":"Ganesh Neupane",
+       "deg":"General Medicine",
+       "position":"Health Assistant",
+       "img":"/images/ganesh.jpg"
+   }
+    ],
+    "dailyservices":[
+        {
+            "servname":"Daily Physician Service",
+            "dname":"Dr.Umesh Guragain",
+            "deg":"MBBS.MD",
+            "position":"Senior Physician and MD in Internal Medicine"
+            
+        },
+        {
+            "servname":"Daily Orthopedic service",
+            "dname":"Dr.Ravi Kumar Shah",
+            "deg":"MBBS.MS",
+            "position":"Orthopedic and Trauma Surgeon"
+        },
+        {
+            "servname":"Daily Pediatric Service",
+            "dname":"Dr.Sunil Adhikari",
+            "deg":"MBBS.MD",
+            "position":"Pediatrician"
+        },
+        {
+            "servname":"Daily Gynae and OBS Service",
+            "dname":"Dr.Mamata Pandey",
+            "deg":"MBBS.MD",
+            "position":"Gynae and OBS"
+        },
+        {
+            "servname":"Daily USG Service",
+            "dname":"Dr.Rajiv Rizal",
+            "deg":"MBBS.MD",
+            "position":"Radiologist"
+        }
+    ]
+}

@@ -12,6 +12,7 @@ body{
 }
 a{
   text-decoration: none;
+  
 }
 
 .swiper-button-prev{
@@ -37,4 +38,12 @@ iframe{
   border: 0;
   width: 100%;
   padding: 0;
+}
+.type{
+  font-weight: 900;
+  font-size: 25px;
+}
+
+.fontcolorhover:hover{
+  color: black;
 }
