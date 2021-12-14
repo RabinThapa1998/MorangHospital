@@ -72,13 +72,18 @@ export default function Home() {
 
 
   return (
+    <>
+      <Head>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
+    </Head>
+  
     <Box sx={{ margin: '0px', overflowX: 'hidden' }}>
       <Box className={styles.homebg} sx={{ pt: 2 }} px={{ sm:3, xs:2}}>
 
         <Paper elevation={0} sx={{ p: 0, height: 'auto', background: 'transparent' }}>
           <Typography variant='h3' sx={{ fontWeight: '600', textAlign: 'center' }} color='text.secondary'>Welcome To </Typography>
-          <Typography variant='h2' sx={{ fontWeight: '900', fontSize: '80px', textAlign: 'center', textDecoration: 'underline' }} color='text.primary'>Morang Hospital</Typography>
-          <Typography variant='h5' sx={{ fontWeight: '900', textAlign: 'center', textDecoration: 'underline' }} color='text.primary'>
+          <Typography variant='h2' sx={{ fontWeight: '700', fontSize: '90px', textAlign: 'center', textDecoration: 'underline' }} color='text.primary'>Morang Hospital</Typography>
+          <Typography variant='h5' sx={{ fontWeight: '700', textAlign: 'center', textDecoration: 'underline' }} color='text.primary'>
             <Typewriter
               options={{
                 strings: ['Since 2007'],
@@ -311,5 +316,6 @@ export default function Home() {
 
       </Box>
     </Box>
+    </>
   )
 }

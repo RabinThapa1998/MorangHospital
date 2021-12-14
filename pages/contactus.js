@@ -7,19 +7,18 @@ import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import { Typography, Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-import GoogleMapReact from 'google-map-react';
+import CssBaseline from '@mui/material/CssBaseline';
+import Head from 'next/head'
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 const contactus = () => {
-const map = {
-    center: {
-      lat: 59.95,
-      lng: 30.33
-    },
-    zoom: 11
-  };
-    return (
 
+    return (
+        <>
+          <Head>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
+    </Head>
+        <CssBaseline />
         <Box sx={{ p: 2 }}>
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>
@@ -66,7 +65,8 @@ const map = {
                 </Grid>
             </Grid>
         </Box>
-
+   
+    </>
     );
 }
 
